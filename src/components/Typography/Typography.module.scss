@@ -1,0 +1,94 @@
+@import 'styles/variables';
+@import 'styles/mixins';
+
+.pageTitle {
+  @include basicFont;
+  font-family: $font-titles;
+
+  text-transform: capitalize;
+
+  // Light theme
+  [data-theme='light'] & {
+    color: $color-title-text-light;
+  }
+
+  // Dark theme
+  [data-theme='dark'] & {
+    color: $color-title-text-dark;
+  }
+}
+
+.highlighted {
+  color: $color-title-text-highliter-dark;
+}
+
+.subTitle {
+  @include basicFont;
+
+  font-family: $font-titles;
+  font-size: $font-size-subtitle;
+  line-height: $line-height-subtitle;
+
+  // Light theme
+  [data-theme='light'] & {
+    color: $color-title-text-light;
+  }
+
+  // Dark theme
+  [data-theme='dark'] & {
+    color: $color-title-text-dark;
+  }
+}
+
+.sectionTitle {
+  @include basicFont;
+
+  font-family: $font-titles;
+  font-size: $font-size-sectionTitle;
+
+  // Light theme
+  [data-theme='light'] & {
+    color: $color-title-text-light;
+  }
+
+  // Dark theme
+  [data-theme='dark'] & {
+    color: $color-title-text-dark;
+  }
+}
+
+.plainText {
+  @include basicFont;
+
+  font-size: 1.1875rem;
+  line-height: 1.6875rem;
+
+  // Light theme
+  [data-theme='light'] & {
+    color: $color-plain-text-light;
+  }
+
+  // Dark theme
+  [data-theme='dark'] & {
+    color: $color-plain-text-dark;
+  }
+}
+
+.label {
+  @include roundedCorners;
+
+  display: inline-block;
+  padding: calc(var(--offset-element-content) / 2);
+
+  // Dark theme
+  [data-theme='dark'] & {
+    background-color: $color-label-background-dark;
+    color: $color-label-text-dark;
+  }
+}
+
+// PROPS
+
+.withOffset {
+  margin-bottom: var(--offset-between-elements);
+}
