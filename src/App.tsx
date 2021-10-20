@@ -3,6 +3,8 @@ import './App.css';
 import Header from 'sections/Header';
 import Intro from 'sections/Intro';
 
+import ThemeProviderWrapper from 'styles/ThemeProviderWrapper';
+
 const menuFields = [
   {
     id: '1',
@@ -28,10 +30,12 @@ const menuFields = [
 
 function App() {
   return (
-    <div className="App">
-      <Header menu={menuFields} />
-      <Intro />
-    </div>
+    <ThemeProviderWrapper>
+      <div className="App">
+        <Header menu={menuFields} />
+        <Intro />
+      </div>
+    </ThemeProviderWrapper>
   );
 }
 

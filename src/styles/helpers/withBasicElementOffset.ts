@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { Theme } from 'styles/base';
+import { Theme } from 'styles/baseTheme';
 
 export type WithBasicElementOffsets = {
   /** added offset right by multiplying theme baseOffset variable */
@@ -13,8 +13,8 @@ export const withBasicElementOffsets = css`
   box-sizing: border-box;
 
   ${({ offsetRight, theme }: WithBasicElementOffsets & { theme: Theme }) =>
-    offsetRight && `margin-right: ${theme.offsets.basic * Number(offsetRight)}px`};
+    offsetRight && `margin-right: ${theme.offsets.batweenElements}`};
 
   ${({ offsetBottom, theme }: WithBasicElementOffsets & { theme: Theme }) =>
-    offsetBottom && `margin-bottom: ${theme.offsets.basic * Number(offsetBottom)}px`};
+    offsetBottom && `margin-bottom: ${theme.offsets.batweenElements}`};
 `;

@@ -1,0 +1,119 @@
+import { dark, light } from './themes';
+
+const font = {
+  sizeMin: 12,
+  sizeMax: 16,
+};
+
+const screens = {
+  // Width
+  mobileWidth: 320,
+  tabletWidth: 600,
+  desktopWidth: 1600,
+
+  // Height
+  mobileHeight: 640,
+  tabletHeight: 720,
+  desktopHeight: 980,
+};
+
+const basicOffset = 8;
+const base = {
+  zIndex: {
+    navigation: 10,
+    notification: 100,
+    alert: 1000,
+  },
+
+  font: {
+    // font-size: calc([minimum size] + ([maximum size] - [minimum size]) * ((100vw - [minimum viewport width]) / ([maximum viewport width] - [minimum viewport width])));
+    size: `calc(
+      ${font.sizeMin}px + ${font.sizeMax - font.sizeMin} *
+        ((100vw - ${screens.mobileWidth}px) / ${screens.desktopWidth - screens.mobileWidth})
+    )`,
+    family: {
+      text: '"Montserrat", sans-serif',
+      title: '"Roboto", Arial, sans-serif',
+    },
+  },
+
+  elements: {
+    header: {
+      height: 'var(--height-header)',
+    },
+  },
+
+  border: {
+    radius: 'var(--border-radius)',
+    size: 'var(--border-size)',
+  },
+
+  offsets: {
+    section: 'var(--offset-section)',
+    batweenElements: 'var(--offset-between-elements)',
+    elementContent: 'var(--offset-element-content)',
+    container: 'var(--container-offset)',
+  },
+
+  colorTheme: 'light',
+  colors: {
+    dark,
+    light,
+  },
+
+  screens: {
+    mobile: {
+      height: screens.mobileHeight,
+      width: screens.mobileWidth,
+    },
+    tablet: {
+      height: screens.tabletHeight,
+      width: screens.tabletWidth,
+    },
+    desktop: {
+      height: screens.desktopHeight,
+      width: screens.desktopWidth,
+    },
+  },
+
+  /**********************************************************/
+  /********************** Variables *************************/
+  /****************** Do not use in app *********************/
+  /**********************************************************/
+
+  variables: {
+    border: {
+      size: 1,
+      radius: basicOffset * 2,
+    },
+
+    header: {
+      height: {
+        mobile: 75,
+        tablet: 100,
+        desktop: 150,
+      },
+    },
+    offsets: {
+      section: {
+        mobile: basicOffset * 3,
+        tablet: basicOffset * 6,
+        desktop: basicOffset * 12,
+      },
+      betweenElements: {
+        mobile: basicOffset,
+        tablet: basicOffset,
+        desktop: basicOffset * 2,
+      },
+      elementContent: {
+        mobile: basicOffset,
+        tablet: basicOffset * 2,
+        desktop: basicOffset * 2,
+      },
+    },
+  },
+};
+
+export type Theme = typeof base;
+
+export default base;

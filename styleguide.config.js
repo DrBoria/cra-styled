@@ -49,28 +49,12 @@ module.exports = {
   // Sections that is displayed in styleguidelist
   sections: [
     {
-      name: 'Containers',
-      components: ['src/components/Containers/Page.ts', 'src/components/Containers/Section.ts'],
+      name: 'Components',
+      components: 'src/components/**/*.tsx',
     },
     {
-      name: 'Elements',
-      components: 'src/components/Elements/**/index.ts*',
-    },
-    {
-      name: 'Typography',
-      components: [
-        'src/components/Typography/Basic.ts',
-        'src/components/Typography/Table.ts',
-        'src/components/Typography/Graphics.ts',
-      ],
-    },
-    {
-      name: 'Modals',
-      components: 'src/components/Modals/**/index.ts*',
-    },
-    {
-      name: 'Charts',
-      components: 'src/components/Charts/**/index.ts*',
+      name: 'Sections',
+      components: 'src/sections/**/*.tsx',
     },
   ],
 
