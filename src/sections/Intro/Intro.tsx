@@ -4,10 +4,12 @@ import { ThemeProvider } from 'styled-components';
 import Button from 'components/Button';
 import { Highlighted } from 'components/Typography';
 
+import { dark } from 'styles/themes';
+
 import { TitleSection, Column, IntroSection } from './Intro.styles';
 
 const Intro: FC<any> = () => (
-  <ThemeProvider theme={{ colorTheme: 'dark' }}>
+  <ThemeProvider theme={{ colors: dark }}>
     <IntroSection>
       <Column>
         <TitleSection>

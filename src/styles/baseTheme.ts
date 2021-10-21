@@ -1,4 +1,4 @@
-import { dark, light } from './themes';
+import { light } from './themes';
 
 const font = {
   sizeMin: 12,
@@ -55,10 +55,8 @@ const base = {
     container: 'var(--container-offset)',
   },
 
-  colorTheme: 'light',
   colors: {
-    dark,
-    light,
+    ...light,
   },
 
   screens: {

@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components';
+import { Theme } from 'styles/baseTheme';
 import { TWithBasicElementOffsets, withBasicElementOffsets } from 'styles/helpers';
 
 const basicFont = css`
-  ${({ theme: { font } }) => `
+  ${({ theme: { font } }: { theme: Theme }) => `
     font-family: ${font.family.text};
     font-size: ${font.size};
   `}
@@ -24,8 +25,8 @@ export const PageTitle = styled.h1<TWithBasicElementOffsets>`
   font-weight: 700;
   text-transform: capitalize;
 
-  ${({ theme: { colors, colorTheme, font } }) => `
-    color: ${colors[colorTheme].typography.title};
+  ${({ theme: { colors, font } }: { theme: Theme }) => `
+    color: ${colors.typography.title};
     font-family: ${font.family.title};
   `}
 `;
@@ -37,8 +38,8 @@ export const SubTitle = styled.h2<TWithBasicElementOffsets>`
   font-size: 1.3125rem;
   line-height: 1.8125rem;
 
-  ${({ theme: { colors, colorTheme, font } }) => `
-    color:  ${colors[colorTheme].typography.title};
+  ${({ theme: { colors, font } }: { theme: Theme }) => `
+    color:  ${colors.typography.title};
     font-family: ${font.family.title};
   `}
 `;
@@ -50,8 +51,8 @@ export const SectionTitle = styled.h3<TWithBasicElementOffsets>`
   font-weight: 700;
   text-transform: capitalize;
 
-  ${({ theme: { colors, colorTheme, font } }) => `
-    color: ${colors[colorTheme].typography.title};
+  ${({ theme: { colors, font } }: { theme: Theme }) => `
+    color: ${colors.typography.title};
     font-family: ${font.family.title};
   `}
 `;
@@ -63,23 +64,23 @@ export const PlainText = styled.p<TWithBasicElementOffsets>`
   font-size: 1.1875rem;
   line-height: 1.6875rem;
 
-  ${({ theme: { colors, colorTheme } }) => `
-    color: ${colors[colorTheme].typography.plainText}
+  ${({ theme: { colors } }: { theme: Theme }) => `
+    color: ${colors.typography.plainText}
   `}
 `;
 
 export const Highlighted = styled.span<TWithBasicElementOffsets>`
-  ${({ theme: { colors, colorTheme } }) => `
-    color: ${colors[colorTheme].decoration.highliter}
+  ${({ theme: { colors } }: { theme: Theme }) => `
+    color: ${colors.decoration.highliter}
   `}
 `;
 
 export const Label = styled.span<TWithBasicElementOffsets>`
   display: inline-block;
 
-  ${({ theme: { colors, colorTheme, border, offsets } }) => `
-    background-color: ${colors[colorTheme].background.label};
-    color:  ${colors[colorTheme].typography.label};
+  ${({ theme: { colors, border, offsets } }: { theme: Theme }) => `
+    background-color: ${colors.background.label};
+    color:  ${colors.typography.label};
     border-radius: ${border.radius};
     
     padding: calc(${offsets.elementContent} / 2);

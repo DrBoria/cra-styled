@@ -5,6 +5,8 @@ import { TMenu } from 'api/types';
 
 import Button from 'components/Button';
 
+import { dark } from 'styles/themes';
+
 import { HeaderSection } from './Header.styles';
 
 export type THeaderProps = {
@@ -12,7 +14,7 @@ export type THeaderProps = {
 };
 
 const Header: FC<THeaderProps> = ({ menu }) => (
-  <ThemeProvider theme={{ colorTheme: 'dark' }}>
+  <ThemeProvider theme={{ colors: dark }}>
     <HeaderSection>
       {menu.map((field, index) => (
         <a href={field.url} key={index}>

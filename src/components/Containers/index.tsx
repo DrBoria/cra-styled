@@ -18,18 +18,18 @@ type ISectionProps = {
 // Use this conteiner for wrapping any section on page
 // No usage restrictions
 export const BasicSection = styled.div<ISectionProps>`
-  ${({ noHeightLimit, theme: { screens, elements, colors, colorTheme, offsets } }) => `
+  ${({ noHeightLimit, theme: { screens, elements, colors, offsets } }: ISectionProps) => `
     padding: ${offsets.section};
 
-    background-color: ${colors[colorTheme].background.section};
+    background-color: ${colors.background.section};
 
     max-height: calc(${screens.desktop.height} - ${elements.header.height});
     height: calc(${screens.mobile.height}px - ${elements.header.height});
 
-    @media (min-width: ${screens.tablet.width}) {
+    @media (min-width: ${screens.tablet.width}px) {
       height: calc(${screens.tablet.height} - ${elements.header.height});
     }
-    @media (min-width: ${screens.desktop.width}) {
+    @media (min-width: ${screens.desktop.width}px) {
       height: calc(${screens.desktop.height} - ${elements.header.height});
       padding: ${offsets.section} ${offsets.container};
     }
@@ -49,9 +49,9 @@ export const BasicSection = styled.div<ISectionProps>`
 // Use this container for wrapping all page content
 // Should be used only once per page
 export const PageContainer = styled.div`
-  ${({ theme: { elements, offsets } }) =>
+  ${({ theme: { elements, offsets } }: { theme: Theme }) =>
     `
-      padding: ${offsets.page};
+      padding: ${offsets.container};
       padding-top: ${elements.header.height};
       min-height: 100vh;
     `}

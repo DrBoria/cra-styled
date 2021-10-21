@@ -8,7 +8,7 @@ const MediaProvider = styled.div`
     --border-radius: ${variables.border.radius}px;
     --border-size: ${variables.border.size}px;
 
-    --container-offset: calc((100% - ${screens.desktop.width} - ${offsets.section}) / 2)px;
+    --container-offset: calc((100% - ${screens.desktop.width}px - ${offsets.section}) / 2);
 
     --height-header: ${variables.header.height.mobile}px;
     --offset-section: ${variables.offsets.section.mobile}px;

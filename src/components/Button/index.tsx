@@ -11,7 +11,7 @@ type TButton = {
   TFullWidth;
 
 const Button = styled.button<TButton>`
-  ${({ type = 'navigation', theme: { border, offsets, colors, colorTheme } }) => `
+  ${({ type = 'navigation', theme: { border, offsets, colors } }: TButton) => `
     border: none;
     background: none;
     color: inherit;
@@ -24,8 +24,8 @@ const Button = styled.button<TButton>`
     ${
       type === 'navigation'
         ? `
-          border: ${border.size} solid ${colors[colorTheme].decoration.border};
-          color: ${colors[colorTheme].typography.navigationText};
+          border: ${border.size} solid ${colors.decoration.border};
+          color: ${colors.typography.navigationText};
           text-transform: uppercase;
         `
         : ''
@@ -35,7 +35,7 @@ const Button = styled.button<TButton>`
       type === 'menu'
         ? `
           border: none;
-          color: ${colors[colorTheme].typography.navigationText};
+          color: ${colors.typography.navigationText};
           text-transform: uppercase;
         `
         : ''

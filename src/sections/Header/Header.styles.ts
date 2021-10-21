@@ -1,21 +1,25 @@
 import styled from 'styled-components';
+import { Theme } from 'styles/baseTheme';
 
 export const HeaderSection = styled.div`
-  position: fixed;
-  z-index: $z-index-navigation;
-  top: 0;
-  left: 0;
+  ${({ theme: { colors, offsets, zIndex, elements, screens } }: { theme: Theme }) => `
+    position: fixed;
+    z-index: ${zIndex.navigation};
+    top: 0;
+    left: 0;
 
-  display: flex;
+    display: flex;
 
-  width: 100%;
-  height: var(--height-header);
+    width: 100%;
+    height: ${elements.header.height};
 
-  padding: calc(var(--offset-section) / 2) var(--offset-section);
+    background-color: ${colors.background.section};
 
-  background-color: $color-section-background-dark;
+    padding: calc(${offsets.section} / 2) ${offsets.section};
 
-  @include desktop {
-    padding: calc(var(--offset-section) / 2) calc((100% - var(--width-container-content-max)) / 2);
-  }
+
+    @media (min-width: ${screens.desktop.width}px) {
+      padding: calc(${offsets.section} / 2) ${offsets.container};
+    }
+  `}
 `;
