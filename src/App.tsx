@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import Header from 'sections/Header';
 import Intro from 'sections/Intro';
 
@@ -31,10 +30,8 @@ const menuFields = [
 function App() {
   return (
     <ThemeProviderWrapper>
-      <div className="App">
-        <Header menu={menuFields} />
-        <Intro />
-      </div>
+      <Header menu={menuFields} />
+      <Intro />
     </ThemeProviderWrapper>
   );
 }

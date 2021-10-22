@@ -1,6 +1,9 @@
 ### Button:
 
 ```jsx
+import { ThemeProvider } from 'styled-components';
+import { dark } from 'styles/themes';
+
 import Button from 'components/Button';
 
 <>
@@ -10,9 +13,11 @@ import Button from 'components/Button';
     <Button type="menu">Menu Button</Button>
   </div>
   Dark theme
-  <div data-theme="dark" style={{ width: '100%', padding: '10px', backgroundColor: 'black' }}>
-    <Button>Navigation Button</Button>
-    <Button type="menu">Menu Button</Button>
-  </div>
+  <ThemeProvider theme={{ colors: dark }}>
+    <div style={{ width: '100%', padding: '10px', backgroundColor: 'black' }}>
+      <Button>Navigation Button</Button>
+      <Button type="menu">Menu Button</Button>
+    </div>
+  </ThemeProvider>
 </>;
 ```
