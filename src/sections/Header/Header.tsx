@@ -1,13 +1,17 @@
 import React, { FC } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import { TMenu } from 'api/types';
-
 import Button from 'components/Button';
 
 import { dark } from 'styles/themes';
 
 import { HeaderSection } from './Header.styles';
+
+type TMenu = {
+  id: string;
+  title: string;
+  url: string;
+};
 
 export type THeaderProps = {
   menu: TMenu[];

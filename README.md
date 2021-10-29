@@ -13,7 +13,6 @@
 
     public/              public files for build
     src/                 code of all application
-       /api              predefined list of queries to BE
        /components       moleculas in atomic design. Reusable components (like buttons, inputs etc.). Should have only ui logic, not business logic (dumb components).
        /sections         organisms in atomic design. Could contain business logic, but main purpose is combining components
        /styles           styles, themes, theme providers and so on
