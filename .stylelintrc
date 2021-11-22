@@ -1,0 +1,93 @@
+{
+  "extends": [
+    "stylelint-config-prettier",
+    "stylelint-config-recommended",
+    "stylelint-config-rational-order"
+  ],
+  "plugins": [
+    "stylelint-order",
+    "stylelint-config-rational-order/plugin",
+    "stylelint-declaration-strict-value"
+  ],
+  "customSyntax": "@stylelint/postcss-css-in-js",
+  "defaultSeverity": "error",
+  "rules": {
+    "string-quotes": "single",
+    "no-duplicate-selectors": true,
+    "color-hex-case": "upper",
+    "color-hex-length": "long",
+    "at-rule-semicolon-space-before": "never",
+    "media-feature-parentheses-space-inside": "always",
+    "block-no-empty": true,
+    "color-no-invalid-hex": true,
+    "color-named": "never",
+    "declaration-block-no-duplicate-properties": true,
+    "declaration-no-important": true,
+    "selector-no-qualifying-type": [
+      true,
+      {
+        "ignore": [
+          "attribute"
+        ]
+      }
+    ],
+    "function-url-no-scheme-relative": true,
+    "max-nesting-depth": 3,
+    "function-comma-space-after": "always",
+    "no-descending-specificity": null,
+    "scale-unlimited/declaration-strict-value": [
+      [
+        "/color$/",
+        "z-index",
+        "font-size",
+        "line-height",
+        "border-radius",
+        "font-family",
+        "/background/",
+        "grid-column-gap",
+        "/^padding/",
+        "/^margin/"
+      ],
+      {
+        "disableFix": true,
+        "expandShorthand": true,
+        "ignoreValues": [
+          "/100%/",
+          "/0/",
+          "/=>/",
+          "auto",
+          "inherit",
+          "transparent",
+          "/theme(.)+/"
+        ]
+      }
+    ],
+    "order/order": [
+      "declarations",
+      {
+        "type": "rule",
+        "selector": "^&::(before|after)"
+      },
+      {
+        "type": "rule",
+        "selector": "^&:\\w"
+      },
+      {
+        "type": "rule",
+        "selector": "^."
+      },
+      {
+        "type": "at-rule",
+        "name": "media"
+      }
+    ],
+    "order/properties-order": [],
+    "plugin/rational-order": [
+      true,
+      {
+        "border-in-box-model": false,
+        "empty-line-between-groups": true
+      }
+    ]
+  }
+}

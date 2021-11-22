@@ -1,88 +1,94 @@
 import styled, { css } from 'styled-components';
-import { Theme } from 'styles/baseTheme';
-import { TWithBasicElementOffsets, withBasicElementOffsets } from 'styles/helpers';
 
-const basicFont = css`
-  ${({ theme: { font } }: { theme: Theme }) => `
-    font-family: ${font.family.text};
-    font-size: ${font.size};
-  `}
+import { TWithBasicElementOffsets, withOffsetBottom, withOffsetsRight } from 'styles/helpers';
 
-  font-style: normal;
-  font-weight: 500;
-
-  margin: 0;
+export const basicFont = css`
+  ${({ theme }) => `500 ${theme.font.size} ${theme.font.family.text}`}
 `;
 
 /**
  * @visibleName Typography
  */
 
+const sizes = {
+  PlainText: {
+    fontSize:   '1.1rem;',
+    lineHeight: '1.5rem;',
+  },
+
+  SubTitle: {
+    fontSize:   '1.3rem;',
+    lineHeight: '1.8rem;',
+  },
+
+  SectionTitle: {
+    fontSize:   '1.6rem;',
+    lineHeight: '2rem;',
+  },
+
+  PageTitle: {
+    fontSize:   '2.5rem;',
+    lineHeight: '3rem;',
+  },
+};
+
 export const PageTitle = styled.h1<TWithBasicElementOffsets>`
-  ${basicFont}
-  ${withBasicElementOffsets}
+  margin-right: ${withOffsetsRight};
+  margin-bottom: ${withOffsetBottom};
 
+  color: ${({ theme }) => theme.colors.sectionContent};
+  font: ${basicFont};
   font-weight: 700;
+  font-size: ${sizes.PageTitle.fontSize};
+  font-family: ${({ theme }) => theme.font.family.title};
+  line-height: ${sizes.PageTitle.lineHeight};
   text-transform: capitalize;
-
-  ${({ theme: { colors, font } }: { theme: Theme }) => `
-    color: ${colors.typography.title};
-    font-family: ${font.family.title};
-  `}
 `;
 
 export const SubTitle = styled.h2<TWithBasicElementOffsets>`
-  ${basicFont}
-  ${withBasicElementOffsets}
-  
-  font-size: 1.3125rem;
-  line-height: 1.8125rem;
+  margin-right: ${withOffsetsRight};
+  margin-bottom: ${withOffsetBottom};
 
-  ${({ theme: { colors, font } }: { theme: Theme }) => `
-    color:  ${colors.typography.title};
-    font-family: ${font.family.title};
-  `}
+  color: ${({ theme }) => theme.colors.sectionContent};
+  font: ${basicFont};
+  font-size: ${sizes.SubTitle.fontSize};
+  font-family: ${({ theme }) => theme.font.family.title};
+  line-height: ${sizes.SubTitle.lineHeight};
 `;
 
 export const SectionTitle = styled.h3<TWithBasicElementOffsets>`
-  ${basicFont}
-  ${withBasicElementOffsets}
+  margin-right: ${withOffsetsRight};
+  margin-bottom: ${withOffsetBottom};
 
+  color: ${({ theme }) => theme.colors.sectionContent};
+  font: ${basicFont};
   font-weight: 700;
+  font-size: ${sizes.SectionTitle.fontSize};
+  font-family: ${({ theme }) => theme.font.family.title};
+  line-height: ${sizes.SectionTitle.lineHeight};
   text-transform: capitalize;
-
-  ${({ theme: { colors, font } }: { theme: Theme }) => `
-    color: ${colors.typography.title};
-    font-family: ${font.family.title};
-  `}
 `;
 
 export const PlainText = styled.p<TWithBasicElementOffsets>`
-  ${basicFont}
-  ${withBasicElementOffsets}
-  
-  font-size: 1.1875rem;
-  line-height: 1.6875rem;
+  margin-right: ${withOffsetsRight};
+  margin-bottom: ${withOffsetBottom};
 
-  ${({ theme: { colors } }: { theme: Theme }) => `
-    color: ${colors.typography.plainText}
-  `}
+  color: ${({ theme }) => theme.colors.sectionContent};
+  font: ${basicFont};
+  font-size: ${sizes.PlainText.fontSize};
+  line-height: ${sizes.PlainText.lineHeight};
 `;
 
 export const Highlighted = styled.span<TWithBasicElementOffsets>`
-  ${({ theme: { colors } }: { theme: Theme }) => `
-    color: ${colors.decoration.highliter}
-  `}
+  color: ${({ theme }) => theme.colors.highlighted};
 `;
 
 export const Label = styled.span<TWithBasicElementOffsets>`
   display: inline-block;
+  padding: ${({ theme }) => `calc(${theme.offsets.elementContent} / 2)`};
 
-  ${({ theme: { colors, border, offsets } }: { theme: Theme }) => `
-    background-color: ${colors.background.label};
-    color:  ${colors.typography.label};
-    border-radius: ${border.radius};
-    
-    padding: calc(${offsets.elementContent} / 2);
-  `}
+  color: ${({ theme }) => theme.colors.sectionContent};
+
+  background-color: ${({ theme }) => theme.colors.label};
+  border-radius: ${({ theme }) => theme.border.radius};
 `;

@@ -1,51 +1,53 @@
-import styled from 'styled-components';
-import { Theme } from 'styles/baseTheme';
-import { withBasicElementOffsets, TWithBasicElementOffsets, TFullWidth } from 'styles/helpers';
+import styled, { css } from 'styled-components';
+
+import { basicFont } from 'components/Typography';
+
+import { withOffsetBottom, withOffsetsRight, TWithBasicElementOffsets, TFullWidth } from 'styles/helpers';
+
+type TButtonTypes = 'navigation' | 'menu';
 
 type TButton = {
   onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined;
   className?: string;
-  type?: 'navigation' | 'menu';
-  theme: Theme;
+  type?: TButtonTypes;
 } & TWithBasicElementOffsets &
-  TFullWidth;
+TFullWidth;
+
+const ButtonTypes = (type?: TButtonTypes) => {
+  switch (type) {
+    case 'menu':
+      return css`
+        color: ${({ theme }) => theme.colors.sectionContent};
+        text-transform: uppercase;
+
+        border: none;
+      `;
+    case 'navigation':
+    default:
+      return css`
+        color: ${({ theme }) => theme.colors.sectionContent};
+        text-transform: uppercase;
+
+        border: ${({ theme }) => `${theme.border.size} solid ${theme.colors.sectionContent}`};
+      `;
+  }
+};
 
 const Button = styled.button<TButton>`
-  ${({ type = 'navigation', theme: { border, offsets, colors } }: TButton) => `
-    border: none;
-    background: none;
-    color: inherit;
-    cursor: pointer;
-    font-size: 1rem;
-    outline: inherit;
-    padding: ${offsets.elementContent};
-    border-radius: ${border.radius};
+  width: ${({ fullWidth }) => fullWidth && '100%'};
+  margin-right: ${withOffsetsRight};
+  margin-bottom: ${withOffsetBottom};
+  padding: ${({ theme }) => theme.offsets.elementContent};
 
-    ${
-      type === 'navigation'
-        ? `
-          border: ${border.size} solid ${colors.decoration.border};
-          color: ${colors.typography.navigationText};
-          text-transform: uppercase;
-        `
-        : ''
-    }
+  font: ${basicFont};
 
-    ${
-      type === 'menu'
-        ? `
-          border: none;
-          color: ${colors.typography.navigationText};
-          text-transform: uppercase;
-        `
-        : ''
-    }
+  background: transparent;
+  border: none;
+  border-radius: ${({ theme }) => theme.border.radius};
+  outline: inherit;
+  cursor: pointer;
 
-  `}
-
-  ${withBasicElementOffsets}
-
-  ${({ fullWidth }) => fullWidth && 'width: 100%;'}
+  ${({ type }) => ButtonTypes(type)}
 `;
 
 export default Button;

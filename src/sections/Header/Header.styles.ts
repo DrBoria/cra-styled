@@ -1,25 +1,20 @@
 import styled from 'styled-components';
-import { Theme } from 'styles/baseTheme';
+
+import { devices } from 'styles/baseTheme';
 
 export const HeaderSection = styled.div`
-  ${({ theme: { colors, offsets, zIndex, elements, screens } }: { theme: Theme }) => `
-    position: fixed;
-    z-index: ${zIndex.navigation};
-    top: 0;
-    left: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: ${({ theme }) => theme.zIndex.navigation};
 
-    display: flex;
+  display: flex;
+  width: 100%;
+  height: ${({ theme }) => theme.elements.header.height};
+  padding: ${({ theme }) => `calc(${theme.offsets.section} / 2) ${theme.offsets.section}`};
 
-    width: 100%;
-    height: ${elements.header.height};
-
-    background-color: ${colors.background.section};
-
-    padding: calc(${offsets.section} / 2) ${offsets.section};
-
-
-    @media (min-width: ${screens.desktop.width}px) {
-      padding: calc(${offsets.section} / 2) ${offsets.container};
-    }
-  `}
+  background: ${({ theme }) => theme.colors.section};
+  @media ${devices.desktop} {
+    padding: ${({ theme }) => `calc(${theme.offsets.section} / 2) ${theme.offsets.container}`};
+  }
 `;

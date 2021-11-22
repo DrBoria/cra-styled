@@ -2,11 +2,9 @@
 
 ```jsx
 import { ThemeProvider } from 'styled-components';
-import { dark } from 'styles/themes';
-
 import { PageContainer, BasicSection, HeadingContainer } from 'components/Containers';
 import { PlainText, SectionTitle } from 'components/Typography';
-
+import { dark } from 'styles/themes';
 <PageContainer>
   <BasicSection>
     <SectionTitle>Light theme</SectionTitle>
@@ -16,7 +14,7 @@ import { PlainText, SectionTitle } from 'components/Typography';
   <ThemeProvider theme={{ colors: dark }}>
     <BasicSection>
       <HeadingContainer>
-        <SectionTitle withOffset>Dark theme</SectionTitle>
+        <SectionTitle offsetBottom>Dark theme</SectionTitle>
         <PlainText>Basic section + heading container usage</PlainText>
       </HeadingContainer>
     </BasicSection>

@@ -1,10 +1,11 @@
-import React, { FC, useState } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
+import { useState, ReactNode } from 'react';
+import styled, { createGlobalStyle, TDefaultTheme, ThemeProvider } from 'styled-components';
+import StyledReset from 'styled-reset';
 
-import themes, { Theme } from './baseTheme';
+import themes from './baseTheme';
 
 const MediaProvider = styled.div`
-  ${({ theme: { variables, screens, offsets } }: { theme: Theme }) => `
+  ${({ theme: { variables, screens, offsets } }) => `
     --border-radius: ${variables.border.radius}px;
     --border-size: ${variables.border.size}px;
 
@@ -28,14 +29,29 @@ const MediaProvider = styled.div`
       --offset-between-elements: ${variables.offsets.betweenElements.desktop}px;
       --offset-element-content: ${variables.offsets.elementContent.desktop}px;
     }
-`}
+  `}
 `;
 
-const ThemeProviderWrapper: FC<any> = ({ children }) => {
-  const [theme, setTheme] = useState(themes);
+const ResetStyle = createGlobalStyle`
+${StyledReset}
+  
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+`;
+
+const ThemeProviderWrapper = ({ children }: { children: ReactNode }) => {
+  const [theme] = useState<TDefaultTheme>(themes);
 
   return (
-    <ThemeProvider theme={{ ...theme, setTheme }}>
+    <ThemeProvider theme={{ ...theme }}>
+      <ResetStyle />
       <MediaProvider>{children}</MediaProvider>
     </ThemeProvider>
   );

@@ -1,66 +1,69 @@
-import styled from 'styled-components';
-import { Theme } from 'styles/baseTheme';
-import { TWithBasicElementOffsets, withBasicElementOffsets, TFullWidth, withFullWidth } from 'styles/helpers';
+import styled, { css } from 'styled-components';
 
-type IContainersProps = {
+import { devices } from 'styles/baseTheme';
+import {
+  TWithBasicElementOffsets,
+  withOffsetBottom,
+  withOffsetsRight,
+  TFullWidth,
+  withFullWidth,
+} from 'styles/helpers';
+
+type TContainersProps = {
   className?: string;
   style?: any;
 };
 
-type ISectionProps = {
+type TSectionProps = {
   noHeightLimit?: boolean;
-} & IContainersProps & { theme: Theme };
+} & TContainersProps;
 
 /**
  * @visibleName Containers
  */
 
+const WithoutHeightLimit = (noHeightLimit?: boolean) =>
+  noHeightLimit &&
+  css`
+    height: auto;
+    min-height: ${({ theme }) => `calc(${theme.screens.tablet.height} - ${theme.elements.header.height})`};
+    max-height: unset;
+  `;
+
 // Use this conteiner for wrapping any section on page
 // No usage restrictions
-export const BasicSection = styled.div<ISectionProps>`
-  ${({ noHeightLimit, theme: { screens, elements, colors, offsets } }: ISectionProps) => `
-    padding: ${offsets.section};
+export const BasicSection = styled.div<TSectionProps>`
+  height: ${({ theme }) => `calc(${theme.screens.mobile.height}px - ${theme.elements.header.height})`};
+  max-height: ${({ theme }) => `calc(${theme.screens.desktop.height} - ${theme.elements.header.height})`};
+  padding: ${({ theme: { offsets } }) => offsets.section};
 
-    background-color: ${colors.background.section};
+  background-color: ${({ theme }) => theme.colors.section};
 
-    max-height: calc(${screens.desktop.height} - ${elements.header.height});
-    height: calc(${screens.mobile.height}px - ${elements.header.height});
+  @media ${devices.tablet} {
+    height: ${({ theme }) => `calc(${theme.screens.tablet.height} - ${theme.elements.header.height})`};
+  }
+  @media ${devices.desktop} {
+    height: ${({ theme }) => `calc(${theme.screens.desktop.height} - ${theme.elements.header.height})`};
+    padding: ${({ theme }) => `${theme.offsets.section} ${theme.offsets.container}`};
+  }
 
-    @media (min-width: ${screens.tablet.width}px) {
-      height: calc(${screens.tablet.height} - ${elements.header.height});
-    }
-    @media (min-width: ${screens.desktop.width}px) {
-      height: calc(${screens.desktop.height} - ${elements.header.height});
-      padding: ${offsets.section} ${offsets.container};
-    }
-
-    ${
-      noHeightLimit
-        ? `
-          height: auto;
-          min-height: calc(${screens.tablet.height} - ${elements.header.height});
-          max-height: unset;
-        `
-        : ''
-    }
-  `}
+  ${({ noHeightLimit }) => WithoutHeightLimit(noHeightLimit)}
 `;
 
 // Use this container for wrapping all page content
 // Should be used only once per page
 export const PageContainer = styled.div`
-  ${({ theme: { elements, offsets } }: { theme: Theme }) =>
-    `
-      padding: ${offsets.container};
-      padding-top: ${elements.header.height};
-      min-height: 100vh;
-    `}
+  min-height: 100vh;
+  padding: ${({ theme }) => theme.offsets.container};
+  padding-top: ${({ theme }) => theme.elements.header.height};
 `;
 
 export const HeadingContainer = styled.div<TWithBasicElementOffsets & TFullWidth>`
   width: 40%;
+
   text-align: left;
 
   ${withFullWidth}
-  ${withBasicElementOffsets}
+  margin-right: ${withOffsetsRight};
+  margin-bottom: ${withOffsetBottom};
 `;

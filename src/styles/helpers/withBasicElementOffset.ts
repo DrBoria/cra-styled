@@ -1,20 +1,18 @@
-import { css } from 'styled-components';
-import { Theme } from 'styles/baseTheme';
+import { css, TDefaultTheme } from 'styled-components';
 
-export type WithBasicElementOffsets = {
+export type TWithBasicElementOffsets = {
   /** added offset right by multiplying theme baseOffset variable */
   offsetRight?: boolean | number;
   /** added offset bottom by multiplying theme baseOffset variable */
   offsetBottom?: boolean | number;
 };
 
-// Every element can have only right and bottom offsets
-export const withBasicElementOffsets = css`
-  box-sizing: border-box;
+export const withOffsetsRight = css`
+  ${({ offsetRight, theme }: TWithBasicElementOffsets & { theme: TDefaultTheme }) =>
+    offsetRight && theme.offsets.batweenElements}
+`;
 
-  ${({ offsetRight, theme }: WithBasicElementOffsets & { theme: Theme }) =>
-    offsetRight && `margin-right: ${theme.offsets.batweenElements}`};
-
-  ${({ offsetBottom, theme }: WithBasicElementOffsets & { theme: Theme }) =>
-    offsetBottom && `margin-bottom: ${theme.offsets.batweenElements}`};
+export const withOffsetBottom = css`
+  ${({ offsetBottom, theme }: TWithBasicElementOffsets & { theme: TDefaultTheme }) =>
+    offsetBottom && theme.offsets.batweenElements}
 `;
